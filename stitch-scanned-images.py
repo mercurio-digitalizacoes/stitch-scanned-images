@@ -22,7 +22,8 @@
 # Copyright (c) 2013 Matthew Petroff
 # 
 # Dependencies: autooptimiser, convert, cpclean, cpfind, enblend, nona,
-#               pto_gen, pano_modify, pano_trafo, pto_var
+#               pto_gen, pano_modify, pano_trafo, pto_var,
+#               wand (imagemagick lib for python) http://docs.wand-py.org/en/0.5.6/
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
