@@ -43,6 +43,9 @@
 # THE SOFTWARE.
 #
 
+from __future__ import print_function
+from wand.image import Image
+from array import *
 import argparse
 import subprocess
 import glob
@@ -120,19 +123,22 @@ pipe = subprocess.Popen(['pano_trafo', '-r', ptoFile], stdout=subprocess.PIPE,
 trafoRout = (pipe.communicate(input
                               = trafoRin.encode('utf-8'))[0]).decode('utf-8')
 splitTrafoRout = trafoRout.splitlines()
-ctrlPts = [''] * len(inputFiles)
+ctrlPts = [None] * len(inputFiles)
 for i in range(0, len(splitTrafoRout)):
-    ctrlPts[int(splitImgCtrlPts[i].split()[0])] \
-        += splitImgCtrlPts[i].split()[1] + ',' \
-        + splitImgCtrlPts[i].split()[2] \
-        + ' ' + splitTrafoRout[i].split()[0] + ',' \
-        + splitTrafoRout[i].split()[1] + ' '
+    if ctrlPts[int(splitImgCtrlPts[i].split()[0])] is None:
+      ctrlPts[int(splitImgCtrlPts[i].split()[0])] = []
+    ctrlPts[int(splitImgCtrlPts[i].split()[0])].append(float(splitImgCtrlPts[i].split()[1]))
+    ctrlPts[int(splitImgCtrlPts[i].split()[0])].append(float(splitImgCtrlPts[i].split()[2]))
+    ctrlPts[int(splitImgCtrlPts[i].split()[0])].append(float(splitTrafoRout[i].split()[0]))
+    ctrlPts[int(splitImgCtrlPts[i].split()[0])].append(float(splitTrafoRout[i].split()[1]))
 ptoOpt = open(ptoFile, 'r', encoding='utf-8').read()
 for i in range(0, len(inputFiles)):
     print('morphing image: ' + str(i))
-    subprocess.call(['convert', inputFiles[i], '-compress', 'LZW', '-distort',
-                     'Shepards', ctrlPts[i],
-                     tmp + os.sep + 'm' + str(i) + '.tif'])
+    print('size: '+ str(len(ctrlPts[i])))
+    print('convert '+ inputFiles[i]+ ' -compress lossless -distort Shepards [controlPoints]'+ tmp + os.sep + 'm' + str(i) + '.tif')
+    with Image(filename=inputFiles[i]) as img:
+      img.distort('shepards', ctrlPts[i])
+      img.save(filename=tmp + os.sep + 'm' + str(i) + '.tif')
     ptoOpt = ptoOpt.replace(inputFiles[i], tmp + '/m' + str(i) + '.tif')
 open(ptoFile, 'w', encoding='utf-8').write(ptoOpt)
 
