@@ -74,15 +74,6 @@ pathlib.Path(tmp).mkdir(parents=True, exist_ok=True)
 
 # Make pto file
 ptoFile = args.output.split('.')[0] + '.pto'
-subprocess.call(['pto_gen', '-o', ptoFile] + inputFiles)
-
-# Find control points
-subprocess.call(['cpfind', '--celeste','--fullscale', '--multirow', '--sieve1size', '500',
-                 '--sieve2width', '20', '--sieve2height', '20', '-o', ptoFile,
-                 ptoFile])
-
-#subprocess.call(['cpfind', '--celeste','--fullscale', '--multirow', '-o', ptoFile, ptoFile])
-subprocess.call(['linefind', '-o', ptoFile, ptoFile])
 
 # Set image parameters to optimize
 subprocess.call(['pto_var', '--opt', 'r,TrX,TrY', '-o', ptoFile, ptoFile])
