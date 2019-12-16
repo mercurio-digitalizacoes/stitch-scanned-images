@@ -7,7 +7,7 @@ if [[ -d $folder ]]; then
     if [[ -d $mapname ]]; then
       echo $mapname
       python3.6 ~/stitch-scanned-images/stitch-scanned-images.py -o "$(basename $mapname).tiff" "$mapname/croped*"
-      bash ~/stitch-scanned-images/stich2.sh "$(basename $mapname)old" "$mapname/croped*"
+      bash ~/stitch-scanned-images/stich.sh "$(basename $mapname)old" "$mapname/croped*"
     fi
   done
 fi
