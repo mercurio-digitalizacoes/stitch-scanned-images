@@ -31,6 +31,7 @@ if [ "$counter" -gt 0 ]; then
   cpclean -o "$pto.pto" "$pto.pto"
   linefind --lines=100 -o "$pto.pto" "$pto.pto"
   pto_var -o "$pto.pto" --set=y=0,p=0,a=0,b=0,c=0,g=0,t=0,r=0,TrX=0,TrY=0,TrZ=0,d=0,e=0 "$pto.pto"
+  linefind --lines=100 -o "$pto.pto" "$pto.pto"
   pto_var -o "$pto.pto" --opt r,TrX,TrY,TrZ,d,e,!r0,!d0,!e0 "$pto.pto"
   autooptimiser -n -o "$pto.pto" "$pto.pto"
   pano_modify  --projection=0 --fov=AUTO --center --canvas=AUTO --crop=AUTO -o "$pto.pto" "$pto.pto"
