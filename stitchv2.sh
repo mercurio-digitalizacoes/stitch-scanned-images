@@ -30,7 +30,7 @@ if [ "$counter" -gt 0 ]; then
   cpfind --celeste -o "$pto.pto" --fullscale --sieve1size 500 --sieve2width 20 --sieve2height 20 --multirow "$pto.pto"
   cpclean -o "$pto.pto" "$pto.pto"
   linefind --lines=100 -o "$pto.pto" "$pto.pto"
-  pto_var -o "$pto.pto" --opt y,p,a,b,c,g,t,r,TrX,TrY,TrZ,d,e,!r0,!d0,!e0 "$pto.pto"
+  pto_var -o "$pto.pto" --opt y,p,a,b,c,r,TrX,TrY,TrZ,d,e,!r0,!d0,!e0 "$pto.pto"
   autooptimiser -n -o "$pto.pto" "$pto.pto"
   pano_modify  --projection=0 --fov=AUTO --center --canvas=AUTO --crop=AUTO -o "$pto.pto" "$pto.pto"
   hugin_executor --stitching --prefix="$pto" "$pto.pto"
