@@ -13,14 +13,17 @@ stitch mais simples. Sem distorcer as imagens antes do enblend.
 
 stitch parecido com o stitchv2, mas todas as variáveis de otimização são zeradas antes da aplicação dessa otimização em si.
 
+## DEPENDENCIES
 
-## Dependências do stitch-scanned-images.py
-
-Python 3.2+, Hugin (`autooptimiser`, `cpclean`, `cpfind`, `nona`, `pto_gen`,
-`pano_modify`, `pano_trafo`, `pto_var`), Enblend, ImageMagick (`convert`)
+- Python 3.2+
+- Hugin: `autooptimiser`, `cpclean`, `cpfind`, `nona`, `pto_gen`,
+`pano_modify`, rpano_trafo`, `pto_var`
+- Enblend
+- ImageMagick: `convert`
 
 wand (imagemagick lib for python) http://docs.wand-py.org/en/0.5.6/
 
-## License
+## LICENSE
 
 Distributed under the [MIT License](http://www.opensource.org/licenses/MIT).
+
