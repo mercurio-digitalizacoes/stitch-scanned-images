@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pto=$1
-counter=0
+counter=1
 FOV=10
 Prefix="result"
 first=true
